@@ -24,7 +24,7 @@ public class DataBootstrap {
     public void init() {
         InputStream inputStream = this.getClass().getResourceAsStream(DATASTORE_LOCATION);
 
-        Employee[] employees = null;
+        Employee[] employees;
 
         try {
             employees = objectMapper.readValue(inputStream, Employee[].class);

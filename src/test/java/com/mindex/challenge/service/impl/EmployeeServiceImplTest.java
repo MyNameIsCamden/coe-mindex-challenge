@@ -15,6 +15,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -63,6 +65,9 @@ public class EmployeeServiceImplTest {
 
         // Update checks
         readEmployee.setPosition("Development Manager");
+        Employee directReport = new Employee();
+        directReport.setEmployeeId("16a596ae-edd3-4847-99fe-c4518e82c86f");
+        readEmployee.setDirectReports(List.of(directReport));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -82,5 +87,6 @@ public class EmployeeServiceImplTest {
         assertEquals(expected.getLastName(), actual.getLastName());
         assertEquals(expected.getDepartment(), actual.getDepartment());
         assertEquals(expected.getPosition(), actual.getPosition());
+        assertEquals(expected.getDirectReports(), actual.getDirectReports());
     }
 }

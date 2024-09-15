@@ -1,6 +1,7 @@
 package com.mindex.challenge.data;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Employee {
     private String employeeId;
@@ -59,5 +60,35 @@ public class Employee {
 
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId='" + employeeId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", department='" + department + '\'' +
+                ", directReports=" + directReports +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(getEmployeeId(), employee.getEmployeeId())
+                && Objects.equals(getFirstName(), employee.getFirstName())
+                && Objects.equals(getLastName(), employee.getLastName())
+                && Objects.equals(getPosition(), employee.getPosition())
+                && Objects.equals(getDepartment(), employee.getDepartment())
+                && Objects.equals(getDirectReports(), employee.getDirectReports());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmployeeId(), getFirstName(), getLastName(), getPosition(), getDepartment(), getDirectReports());
     }
 }
